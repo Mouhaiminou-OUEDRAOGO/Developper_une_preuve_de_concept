@@ -1,0 +1,101 @@
+# Utiliser une image de base avec Python
+FROM python:3.10
+
+# Définir le répertoire de travail
+WORKDIR /app
+
+# Installer les dépendances système nécessaires
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Mettre à jour pip et setuptools
+RUN pip install --upgrade pip setuptools
+
+# Copier le fichier requirements.txt
+COPY requirements.txt ./
+
+# Installer les dépendances Python
+# Installer les dépendances Python une par une
+RUN pip install altair==5.3.0
+RUN pip install attrs==23.2.0
+RUN pip install blinker==1.8.2
+RUN pip install cachetools==5.4.0
+RUN pip install certifi==2024.7.4
+RUN pip install charset-normalizer==3.3.2
+RUN pip install click==8.1.7
+RUN pip install colorama==0.4.6
+RUN pip install contourpy==1.2.1
+RUN pip install cycler==0.12.1
+RUN pip install filelock==3.15.4
+RUN pip install fonttools==4.53.1
+RUN pip install fsspec==2024.6.1
+RUN pip install gitdb==4.0.11
+RUN pip install GitPython==3.1.43
+RUN pip install huggingface-hub==0.24.5
+RUN pip install idna==3.7
+RUN pip install intel-openmp==2021.4.0
+RUN pip install Jinja2==3.1.4
+RUN pip install joblib==1.4.2
+RUN pip install jsonschema==4.23.0
+RUN pip install jsonschema-specifications==2023.12.1
+RUN pip install kiwisolver==1.4.5
+RUN pip install markdown-it-py==3.0.0
+RUN pip install MarkupSafe==2.1.5
+RUN pip install matplotlib==3.9.1
+RUN pip install mdurl==0.1.2
+RUN pip install mkl==2021.4.0
+RUN pip install mpmath==1.3.0
+RUN pip install networkx==3.3
+RUN pip install numpy==1.26.4
+RUN pip install packaging==24.1
+RUN pip install pandas==2.2.2
+RUN pip install pillow==10.4.0
+RUN pip install plotly==5.23.0
+RUN pip install protobuf==5.27.3
+RUN pip install pyarrow==17.0.0
+RUN pip install pydeck==0.9.1
+RUN pip install Pygments==2.18.0
+RUN pip install pyparsing==3.1.2
+RUN pip install python-dateutil==2.9.0.post0
+RUN pip install pytz==2024.1
+RUN pip install PyYAML==6.0.1
+RUN pip install referencing==0.35.1
+RUN pip install regex==2024.7.24
+RUN pip install requests==2.32.3
+RUN pip install rich==13.7.1
+RUN pip install rpds-py==0.19.1
+RUN pip install safetensors==0.4.3
+RUN pip install scikit-learn==1.3.2
+RUN pip install scipy==1.14.0
+RUN pip install seaborn==0.13.2
+RUN pip install six==1.16.0
+RUN pip install smmap==5.0.1
+RUN pip install streamlit==1.37.0
+RUN pip install sympy==1.13.1
+RUN pip install tbb==2021.13.0
+RUN pip install tenacity==8.5.0
+RUN pip install threadpoolctl==3.5.0
+RUN pip install tokenizers==0.19.1
+RUN pip install toml==0.10.2
+RUN pip install toolz==0.12.1
+RUN pip install torch==2.3.1+cpu -f https://download.pytorch.org/whl/torch_stable.html
+RUN pip install tornado==6.4.1
+RUN pip install tqdm==4.66.4
+RUN pip install transformers==4.43.3
+RUN pip install typing_extensions==4.12.2
+RUN pip install tzdata==2024.1
+RUN pip install urllib3==2.2.2
+RUN pip install watchdog==4.0.1
+
+# Vérifier l'installation de Streamlit
+RUN pip show streamlit
+
+# Copier le reste de l'application
+COPY . .
+
+# Exposer le port utilisé par Streamlit
+EXPOSE 8501
+
+# Lancer l'application Streamlit
+CMD ["streamlit", "run", "main.py", "--server.port=8501", "--server.address=0.0.0.0"]

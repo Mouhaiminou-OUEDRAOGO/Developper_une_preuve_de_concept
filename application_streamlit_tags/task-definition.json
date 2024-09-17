@@ -1,0 +1,26 @@
+{
+    "family": "appli_tags",
+    "networkMode": "awsvpc",
+    "executionRoleArn": "arn:aws:iam::021891610333:role/ecsTaskExecutionRole",
+    "containerDefinitions": [
+      {
+        "name": "appli_tags",
+        "image": "021891610333.dkr.ecr.eu-west-3.amazonaws.com/appli_tags:latest",
+        "portMappings": [
+          {
+            "containerPort": 8501,
+            "hostPort": 8501
+          }
+        ],
+        "essential": true,
+        "memory": 512,
+        "cpu": 256
+      }
+    ],
+    "requiresCompatibilities": [
+      "FARGATE"
+    ],
+    "cpu": "256",
+    "memory": "512"
+  }
+  
